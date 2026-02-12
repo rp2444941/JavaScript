@@ -104,3 +104,50 @@ myFunc(); // ["hello", "hello"]
 myFunc(); // ["hello", "hello", "hello"]
 
 //  arr har baar yaad rakha jaata hai — closure ki wajah se
+//Q1: ye kya output dega?
+ for (var i = 0; i <= 3; i++) {
+    setTimeout(() => console.log(i), 1000);
+}
+// Output: 4, 4, 4, 4 — kyunki var i global scope mein hai aur loop ke baad i ki value 4 ho chuki hai
+
+//Q2: ISKO KAISE FIX KAR SAKTE HAIN?
+// Solution 1: let ka use karna (block scope)
+for (let i = 0; i <= 3; i++) {
+    setTimeout(() => console.log(i), 1000);
+}
+// Output: 0, 1, 2, 3 — kyunki let i block scope mein hai aur har iteration ke liye alag i create hota hai
+
+// Solution 2: IIFE (Immediately Invoked Function Expression) ka use karna
+for (var i = 0; i <= 3; i++) {
+    ((j) => {
+        setTimeout(() => console.log(j), 1000);
+    })(i);
+}
+// Output: 0, 1, 2, 3 — kyunki IIFE ke andar j variable create hota hai jo current value of i ko capture karta hai
+
+//Q3: Private variale kaise banaye?
+function createCounter() {
+    let count = 0; // private variable
+
+    return {
+        increment() {
+            count++;
+            console.log(count);
+        },
+        decrement() {
+            count--;
+            console.log(count);
+        },
+        getCount() {
+            return count;
+        }
+    };
+}
+
+const counter1 = createCounter();
+counter1.increment(); // 1
+counter1.increment(); // 2
+counter1.decrement(); // 1
+console.log(counter1.getCount()); // 1
+
+// counter1.count ❌ undefined — direct access possible nahi, closure ke through hi access kar sakte hain
