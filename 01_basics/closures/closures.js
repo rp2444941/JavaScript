@@ -2,6 +2,11 @@
 
 //  Closure = function + uske lexical environment ka reference
 
+// A closure is created when a function remembers and can access variables from
+//  its lexical scope even after the outer function has finished execution.
+
+//...>closure variable ko copy nhi krta wo reference hold krta hai.
+
 // ---------- Basic Example (Fixed) ----------
 function outer() {
     let count = 0;
@@ -151,3 +156,29 @@ counter1.decrement(); // 1
 console.log(counter1.getCount()); // 1
 
 // counter1.count ❌ undefined — direct access possible nahi, closure ke through hi access kar sakte hain
+
+
+
+//Q: Closure memory leak kaise cause kar sakta hai?
+// Closure memory leak tab hota hai jab ek closure kisi variable ko yaad rakhta hai jo kuch memory consume karti hai aur uska use nahi hota.
+// Example:
+function createLargeArray() {
+    let largeArray = new Array(1000000).fill("data");
+    return function() {
+        return largeArray.length;
+    };
+}
+const getLength = createLargeArray();
+// largeArray is still in memory even though it's not directly accessible
+// because getLength closure holds a reference to it, causing a memory leak
+
+
+function test(){
+    for(var i=0; i<3; i++){
+        setTimeout(function(){
+            console.log(i);
+        }, 1000);
+    }
+}
+test();
+// Output: 3, 3, 3 — kyunki var i global scope mein hai aur loop ke baad i ki value 3 ho chuki hai
