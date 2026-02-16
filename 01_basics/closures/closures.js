@@ -182,3 +182,14 @@ function test(){
 }
 test();
 // Output: 3, 3, 3 — kyunki var i global scope mein hai aur loop ke baad i ki value 3 ho chuki hai
+
+
+function test() {
+    for (let i = 0; i < 3; i++) {
+        setTimeout(function() {
+            console.log(i);
+        }, 1000);
+    }
+}
+test();
+// Output: 0, 1, 2 — kyunki let i block scope mein hai aur har iteration ke liye alag i create hota hai
