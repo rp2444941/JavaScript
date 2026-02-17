@@ -124,5 +124,30 @@ c2.increment();
 
 console.log(c1.getCount());
 console.log(c2.getCount());
-// 2,1
-//reason:
+2,1
+
+
+
+/**  Closure is a function bundled together with its lexical environment.
+     It allows the inner function to access variables of the outer function even
+     after the outer function has finished execution, because JavaScript uses lexical scoping.
+ */
+
+     /**
+      * A closure is created when a function remembers and accesses variables from its lexical scope 
+      * even after the outer function has executed.
+      */
+
+
+     function counter(){
+        let count=0;
+
+        return function(){
+            count++;
+            console.log(count);
+            
+        }
+     }
+     let increment=counter();
+    increment();
+    increment();
