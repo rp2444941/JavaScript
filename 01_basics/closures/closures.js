@@ -193,3 +193,79 @@ function test() {
 }
 test();
 // Output: 0, 1, 2 — kyunki let i block scope mein hai aur har iteration ke liye alag i create hota hai
+
+
+
+
+//===========================================================================================================
+//====================CLOSURES:(Engine level Samajh)
+
+/**
+ * closure tab banta hai jab ek function apne lexical scope ke variables
+ * ko yad rkhta hai, even after outer function execution 
+ * finish ho chuki ho.
+ */
+function outer(){
+    let count=0;
+    return function innner(){
+        count++;
+        console.log(count);
+        
+    };
+}
+
+let counter2=outer();
+ counter2();
+ counter2();
+
+
+ //==================================================
+ // 1.Data Privacy
+ function createCounter(){
+    let count=0;
+    return{
+       increment(){
+        count++;
+       },
+       getCount(){
+       return count;
+       }
+    };
+ }
+
+ const c=createCounter();
+ c.increment();
+ console.log(c.getCount());
+
+ //2. Memoization
+ function memoize(fn){
+    let cache={};
+    return function(x){
+        if(cache[x]){
+            return cache[x];
+        }
+        let result=fn(x);
+        cache[x]=result;
+        return result;
+    };
+ }
+
+
+ //Q. Dangerous Level Question
+
+ function test(){
+    let a=10;
+    return function(){
+        console.log(a);
+        a++;
+        
+    };
+ }
+
+ let fn1=test();
+ let fn2=test();
+ fn1();
+ fn1();
+ fn2();
+
+ 

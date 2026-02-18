@@ -1,107 +1,107 @@
-// //# PART 1 — Execution Context (Deep Understanding)
-// /**
-//  * js 2 phase me code run krta ha.
-//  * 1. memory creation phase 
-//  * 2. code execution phase 
-//  */  
-//   console.log(a);
-//   var a=10;
-// //   output:undefind 
-//   console.log(b);
-//   let b=10;
-//   //output:Reference Error (TDZ-temprol dead zone hoisted but uninitialized)
-//   //Uncaught ReferenceError: can't access lexical declaration 'b' before initialization
+//# PART 1 — Execution Context (Deep Understanding)
+/**
+ * js 2 phase me code run krta ha.
+ * 1. memory creation phase 
+ * 2. code execution phase 
+ */  
+  console.log(a);
+  var a=10;
+//   output:undefind 
+  console.log(b);
+  let b=10;
+  //output:Reference Error (TDZ-temprol dead zone hoisted but uninitialized)
+  //Uncaught ReferenceError: can't access lexical declaration 'b' before initialization
 
-//   //#interview trap:
-//   var c=10;
-//   function test(){
-//     console.log(c);
-//     var c=20 
-//   }
-//   test();
-//   //undefined;(hoisted inside function)
-//   // function scope shadowing global
+  //#interview trap:
+  var c=10;
+  function test(){
+    console.log(c);
+    var c=20 
+  }
+  test();
+  //undefined;(hoisted inside function)
+  // function scope shadowing global
 
-// //# PART 2 — Scope & Lexical Environment
-// //Lexical Scope Rule:
-// //inner function outer function access kr skta hai but vice versa not possible.
+//# PART 2 — Scope & Lexical Environment
+//Lexical Scope Rule:
+//inner function outer function access kr skta hai but vice versa not possible.
 
-// let x=10;
-// function outer(){
-//     let x=20;
+let x=10;
+function outer(){
+    let x=20;
 
-//     function inner(){
-//         console.log(x);
-//     }
-//     inner()
-// }
-// outer()
-// //ans:20 kyuki nearest scope pick hota hai.
+    function inner(){
+        console.log(x);
+    }
+    inner()
+}
+outer()
+//ans:20 kyuki nearest scope pick hota hai.
 
-// //# PART 3 — Call Stack
-// //stack --> LIFO
+//# PART 3 — Call Stack
+//stack --> LIFO
 
-// function one(){
-//     two();
-//     function two(){
-//         three();
-//     }
+function one(){
+    two();
+    function two(){
+        three();
+    }
 
-//     function three(){
-//         console.log("Done");
+    function three(){
+        console.log("Done");
         
-//     }
-// }
-//  one();
-// /*
-//  | GEC  |
-//  | one  |   ====>>> first one push then pop then two push then pop like that                  
-//  | two  |            reverse order  pop 
-//  |three |
-//  |      |
+    }
+}
+ one();
+/*
+ | GEC  |
+ | one  |   ====>>> first one push then pop then two push then pop like that                  
+ | two  |            reverse order  pop 
+ |three |
+ |      |
 
-//   */
+  */
  
-//  //# PART 4 — Dangerous Output Practice
-//  var d=5;
-//  function test(){
-//     console.log(d);
-//     var d=10;
+ //# PART 4 — Dangerous Output Practice
+ var d=5;
+ function test(){
+    console.log(d);
+    var d=10;
     
-//  }
-//  //undefined
+ }
+ //undefined
  
-//  let r=5;
-//  {
-//     console.log(r);
-//     let r=10;
+ let r=5;
+ {
+    console.log(r);
+    let r=10;
     
-//  }
-//  // referenceError
+ }
+ // referenceError
 
-//  console.log(foo);
-//  function foo(){
-//     return 1;
-//  }
-//  var foo=2;
-//  //pura function
+ console.log(foo);
+ function foo(){
+    return 1;
+ }
+ var foo=2;
+ //pura function
 
-//   function test(){
-//     console.log(z);    
-//   }
-//   var z=10;
-//   test();
-//   //10
+  function test(){
+    console.log(z);    
+  }
+  var z=10;
+  test();
+  //10
  
-// console.log(foo);
+console.log(foo);
 
-// function foo() {
-//   return 1;
-// }
+function foo() {
+  return 1;
+}
 
-// var foo = 2;
+var foo = 2;
 
-//[Function: foo]
+// [Function: foo]
 
 //Q:
 var s=1;
@@ -126,3 +126,65 @@ function test(){
 }
 test()
 //Reference Error
+
+console.log("Start");
+
+setTimeout(()=>{
+    console.log("Timeout 1");
+    
+},0);
+
+Promise.resolve().then(()=>{
+    console.log("promise 1");
+    
+});
+
+setTimeout(()=>{
+    console.log("Timeout 2");
+    
+},0);
+
+Promise.resolve().then(()=>{
+    console.log("Promise 2");
+    
+});
+console.log("End");
+
+//--------------------------
+console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+
+  Promise.resolve().then(() => {
+    console.log("C");
+  });
+
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("D");
+});
+
+console.log("E");
+
+
+//================
+
+console.log("1");
+
+setTimeout(() => console.log("2"), 0);
+
+Promise.resolve()
+  .then(() => {
+    console.log("3");
+    return Promise.resolve();
+  })
+  .then(() => {
+    console.log("4");
+  });
+
+console.log("5");
+
+
+
