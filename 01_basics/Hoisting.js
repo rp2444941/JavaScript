@@ -157,3 +157,20 @@ if(true){
 // var --> function scoped not block scoped
 // so if block ke andar ka var  bhi function ke top pe hoist hota hai.
 
+// function Hoisting Difference
+sayHi();// HI
+function sayHi(){
+    console.log("HI");
+    
+}
+
+sayHello();//TypeError
+
+var sayHello=function(){
+    console.log("Hello");
+    
+}
+/* kyu:
+--->>First wala.....function Declaration(poora hoist)
+--->> second wala.... function Expression(sirf var hoist hua, function nhi)
+*/
