@@ -90,3 +90,62 @@ let p=new Promise((resolve,reject)=>{
  */
 
 p.then(res=>console.log(res)).catch(err=>console.log(err));
+
+//#5: Real life Example (API call)
+
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+.then((res)=>res.json())
+.then(data=>{
+    console.log(data); 
+})
+.catch((err)=>{
+console.log("Error: ",err);
+
+});
+/**Yaha:
+Server se data aane me time lagta hai
+Isliye fetch promise return karta hai
+ * sabse zyada use API Call me hota hai.
+ */
+
+//#6: Promise Chaining
+
+fetch("https://api.com/user")
+.then(res=>res.json())
+.then(user =>{
+    console.log(user);
+    return fetch(`https://api.com/post/${user.id}`);
+})
+.then(res=>res.json())
+.then(post=>{
+    console.log(post);
+})
+.catch(err=>console.log(err));
+
+/**ye clean hai callback hell se:
+ * 
+ * Ek ka result dusre me use krna;
+ * 
+ */
+
+//#7: Promise All (Interview Important)
+/**Agar multiple api ek sath call krni ho:
+ * 
+ */
+Promise.all([
+    fetch("api1"),
+    fetch("api2"),
+    fetch("api3")
+])
+.then(responses=>{
+    console.log("sab aa gaya");
+    
+})
+.catch(err=>{
+    console.log("Error: ",err); 
+});
+
+/**ye tab use hota hai jab multiple api call krni ho aur unka result chahiye hota hai.
+ * agar koi bhi api fail hoti hai to catch block me jayega.
+ * 
+ */
