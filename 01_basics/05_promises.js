@@ -200,4 +200,21 @@ Promise.race([
  * iske 3 state hote hai: pending, fulfilled, rejected.
  * ye callback hell ko avoid krta hai aur better error handling provide krta hai.
  */
+
+//12: Real Mini project Example(Login System)
+
+function loginUser(username,password){
+    return new Promise((resolve,reject)=>{
+if (username==="admin" && password==="1234"){
+    resolve("Login successful");
+}else{
+    reject("Invalid credentials");
+}   
+    });
+}
+
+loginUser("admin","1234")
+.then(res=>console.log(res))
+.catch(err=>console.log(err));
+
  
