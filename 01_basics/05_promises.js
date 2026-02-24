@@ -149,3 +149,55 @@ Promise.all([
  * agar koi bhi api fail hoti hai to catch block me jayega.
  * 
  */
+
+//#8: Promise.race()
+//==jo sabse pahle complete ho:
+Promise.race([
+    fetch("slow_api"),
+    fetch("fast_api"), 
+])
+.then(res=>{
+    console.log("Sabse fast api ka result: ",res);  
+})
+.catch(err=>{  
+    console.log("Error: ",err);
+});
+
+/**ye tab use hota hai jab multiple api call krni ho aur unme se sabse fast api ka result chahiye hota hai.
+ * agar koi bhi api fail hoti hai to catch block me jayega.
+ * 
+ */
+
+//#9 : Real life me kaha use hota hai ?
+/** * API call 
+ * File read/write 
+ * Database query 
+ * file upload/download
+ * Payment gateway
+ * Authentication/Authorization
+ * image loading
+ * Location Fetch 
+ * chat app Message Send
+ * Otp verification
+ * 
+ */// har jagah janha time lgta hai:
+
+ //#10: Advanced Concepts(Very important)
+
+ //promise automatically return hota hai async function se.
+
+ async function getData(){
+    return "Data mil gaya";
+ }
+ // ye actually return krta hai : Promise{"Data mil gaya"}
+ // isliye ansync/await promise ka hi modern version hai.
+
+
+ //#11: Interviews me kaise explain kre ?
+/**
+ * promise ek object hai jo future me operation complete hone wale async 
+ * operation ka result represent krta hai.
+ * iske 3 state hote hai: pending, fulfilled, rejected.
+ * ye callback hell ko avoid krta hai aur better error handling provide krta hai.
+ */
+ 
