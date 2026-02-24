@@ -1,49 +1,52 @@
-//ASYNC/AWAIT-->>
 /**
- * Promises ka sugar coated version-->jaise biryani ko spoon se khana vs hath se khana.
- */
-
-//Real life example---
-/**
- * tu waiter se bola --> Biryani lao.
- * Waiter: Thodi der lagenge.
- * Tu: theek hai jab tak aa rhi hai, main phone chala leta hu.
- * Jab biryani aayi --> Tu ne phone band karke biryani khayi.
+ * what is async ?
+ * what is await ?
+ * how async works behind the scenes ?
+ * Examples of using async/await
+ * Error Hadnling 
+ * Interviews
+ * Async await vs Promise.then/.catch
  * 
  */
 
-//await sirf async function ke andar use hota hai.
+//async is keyword is used create a async function
+// Always return promise (either i return promise or none promise(like number etc) it wrapet inside promise then return it.)
 
-// Promise way:
-fetchData()
-.then(res=>console.log(res))
-.catch(err=>console.log(err));
+const p=new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve("Promise Resolved Value!!");
+    },5000); //10000 mili sec mins 10 sec
+ });
 
-//Async/await way:
+ const p2=new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve("Promise Resolved Value!!");
+    },10000); 
+ });
+// async and await are used handel the promises.
 
-try{
-    let res=await fetchData();
-    console.log(res);  
-}catch(err){
-    console.log(err);
+
+
+// await can only used inside an async function
+async function handlePromise(){   
+    console.log("Pratap");
+// js engine was waiting for promise to resolved.  
+    const val=await p;
+    console.log("Rudra"); 
+    console.log(val);
+
+     const val2=await p2;
+    console.log("Rudra2"); 
+    console.log(val2);
     
 }
+handlePromise();
 
-//Q: kya await thread ko block krta hai ?
-/**ans:
- * nhi.
- * ye sirf async function ke andar execution pause krta hai.
- * js event loop background me kaam krta rhta hai.
- * 
- */
+// function getData(){
 
-//Q: explain hoiting , promises, async/await in one flow:
-/**
- * js ek single -threaded , event-loop based laguage hai.
- * hoisting memory allocation phase ka behavior hai. asynchronous 
- * operations ko handle krne ke liye phle callbacks the, phot promises aye jo 
- * jo microtask queue use krte hai.async/await promises ke uper built 
- * syntactic sugar hai jo readable, synchronous-looking code
- * likhne deta hai without blocking the main thread.
- * 
- */
+//     //js engine will not await for promise to be resolve it will moved to next line 
+//     p.then(res=>console.log(res));
+//     console.log("Rudra");
+    
+// }
+// getData();
