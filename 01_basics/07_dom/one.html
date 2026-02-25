@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+   <title>DOM,Learning</title>
+    
+</head>
+<body style="background-color: #212121; color: #fff;">
+   <div class="parent">
+    <div class="day">Moday</div>
+    <div class="day">Tuesday</div>
+    <div class="day">wednesday</div>
+    <div class="day">Thursday</div> 
+   </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent');
+    // console.log(parent.children);
+    // for(let i = 0; i < parent.children.length; i++){
+    //     console.log(parent.children[i].textContent);
+    // }
+    parent.children[1].style.color = "red";
+    console.log(parent.firstElementChild);
+    
+    
+</script>
+</html>
