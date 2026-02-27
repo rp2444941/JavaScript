@@ -219,3 +219,37 @@ let myModule=(function(){
 })();
 
 console.log(myModule.getSecret()); // I am private, privateVar directly access nahi kar sakte.
+
+
+
+
+//***2:=================Hoisting===========================
+
+/**js execution 2 phase me hota hai:
+ * 1. Creation Phase:
+ *  js engine code ko read karta hai,
+ *  variables ko memory me allocate krta hai (undefined se initialize krta hai)
+ *  or functions ko pura yaad krta hai.
+ * 
+ * let/const ko bas reserve kiya jata hai (per initialize nhi)-->TDZ (Temporal Dead Zone)
+ * 
+ * 
+ * 2. Execution Phase:
+ * 
+ * line by line code execute hota hai.
+ * 
+ * is pre process ko hoisting kehte hai, matlab variables aur functions ko memory me allocate karna.
+ */
+ 
+
+console.log(a);
+var a=10; // undefined, kyunki var a ko memory me allocate kar diya gaya hai, lekin uski value abhi assign nahi hui hai.
+
+//memory phase: a create,value=undefiend
+
+//execution phase: console.log(a)---> undefined.
+//                  a=10  
+//output: undefined error nhi:
+
+console.log(b);
+let b=20; // ReferenceError: Cannot access 'b' before initialization, kyunki let b ko memory me reserve kiya gaya hai, lekin uski value abhi assign nahi hui hai (TDZ ke karan).
