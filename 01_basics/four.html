@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>count btn</title>
+</head>
+<body>
+<h1 id="count">0</h1>
+<button id="plus">+</button>
+<button id="minus">-</button>
+<button id="reset">Reset</button>
+<script>
+    // Elements select kiya 
+    const countDisplay=document.getElementById('count');
+    const plusbtn=document.getElementById('plus');
+    const minusBtn=document.getElementById('minus');
+    const resetBtn=document.getElementById('reset');
+
+    // count variable 
+    let count=0;
+
+    // Plus button click
+    plusbtn.addEventListener("click", function(){
+        count++;
+        countDisplay.innerHTML=count;
+    });
+
+    // Minus button click
+    minusBtn.addEventListener("click", function(){
+        count--;
+        countDisplay.innerHTML=count;
+    });
+// reset btn click
+ resetBtn.addEventListener('click',function(){
+    count=0;
+    countDisplay.innerHTML=count;
+ });
+
+
+</script>
+</body>
+</html>
