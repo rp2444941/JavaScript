@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+</head>
+<body>
+
+  <h1 id="heading">Hello</h1>
+  <button id="btn">Change Text</button>
+
+  <script>
+   const heading=document.getElementById("heading");
+  const button= document.getElementById("btn");
+  // button ko pkdo fir us pr event chlao
+
+  let isWelcome=false;
+
+  button.addEventListener("click",function(){
+     heading.innerText =isWelcome ? "Hello" : "Welcome Bhai 🔥";
+     isWelcome=!isWelcome;
+  })
+
+   
+  </script>
+</body>
+</html>
