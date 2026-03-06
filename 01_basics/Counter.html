@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+    #count {
+      font-size: 100px;
+    }
+    .positive { color: green; }
+    .negative { color: red; }
+    .zero { color: black; }
+  </style>
+    <title> Counter with Color Change(DOM_practice)</title>
+</head>
+<body>
+  <h1 id="count" class="zero">0</h1>
+  <button id="plus">+</button>
+  <button id="minus">-</button>
+  <button id="reset">Reset</button>
+
+   <script>
+    const countDisplay = document.querySelector("#count");
+    const plusBtn = document.querySelector("#plus");
+    const minusBtn = document.querySelector("#minus");
+    const resetBtn = document.querySelector("#reset");
+
+    let count = 0;
+
+    function updateDisplay() {
+      countDisplay.innerText = count;
+      
+      // Remove all classes
+      countDisplay.classList.remove("positive", "negative", "zero");
+      
+      // Add appropriate class
+      if (count > 0) {
+        countDisplay.classList.add("positive");
+      } else if (count < 0) {
+        countDisplay.classList.add("negative");
+      } else {
+        countDisplay.classList.add("zero");
+      }
+    }
+
+    plusBtn.addEventListener("click", function() {
+      count++;
+      updateDisplay();
+    });
+
+    minusBtn.addEventListener("click", function() {
+      count--;
+      updateDisplay();
+    });
+
+    resetBtn.addEventListener("click", function() {
+      count = 0;
+      updateDisplay();
+    });
+  </script>
+    
+</body>
+</html>
