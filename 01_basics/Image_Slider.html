@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    #image {
+      width: 400px;
+      height: 300px;
+    }
+  </style>
+    <title>Image Slider</title>
+</head>
+<body>
+     <img id="image" src="image.jpg">
+  <br>
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+  
+  <script>
+   const img = document.querySelector("#image");
+    const prevBtn = document.querySelector("#prev");
+    const nextBtn = document.querySelector("#next");
+
+    const images = ["image1.jpg", "image2.jpg", "image3.jpg"];
+    let currentIndex = 0;
+
+    nextBtn.addEventListener("click", function() {
+      currentIndex++;
+      if (currentIndex >= images.length) {
+        currentIndex = 0;  // Loop back
+      }
+      img.setAttribute("src", images[currentIndex]);
+    });
+
+    prevBtn.addEventListener("click", function() {
+      currentIndex--;
+      if (currentIndex < 0) {
+        currentIndex = images.length - 1;  // Loop back
+      }
+      img.setAttribute("src", images[currentIndex]);
+    });
+</script>
+    
+</body>
+</html>
