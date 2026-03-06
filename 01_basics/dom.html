@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background: lightblue;
+      margin: 20px;
+    }
+  </style>
+    <title>DOM</title>
+</head>
+<body>
+    
+   <div id="box"></div>
+  <button id="btn">Change Color</button>  
+    <script>
+/**
+ * element.addEventListener("event",function(){
+ * code chlega
+ * });
+ *
+ 1. Element select → button
+ 2. Event define  → "click"
+ 3. Function      → kya karna hai
+*/
+
+
+//Challenge 1: Change Color on Click
+
+const box=document.querySelector('#box');
+const btn=document.querySelector('#btn');
+btn.addEventListener('click',function(){
+    box.style.backgroundColor = 'red';
+});
+
+    </script>
+</body>
+</html>
