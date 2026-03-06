@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         .todo-item {
+      padding: 10px;
+      margin: 5px;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .delete-btn {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    </style>
+    <title>Todo_App</title>
+</head>
+<body>
+  <h1>To-Do List 📝</h1>
+  <input type="text" id="input" placeholder="Enter task">
+  <button id="add">Add Task</button>
+  <div id="list"></div>
+
+  <script>
+const input=document.querySelector("#input");
+const addBtn=document.querySelector("#add");
+const list=document.querySelector("#list");
+
+addBtn.addEventListener("click", function(){
+    const task=input.value;
+
+    if(task===""){
+        alert("Please enter a task!");
+    }
+    // Create new div
+    const todoDiv=document.createElement("div");
+    todoDiv.classList.add("todo-item");
+    todoDiv.innerHTML=`
+    <span>${task}</span>
+    <button class="delete-btn">Delete</button>
+    `;
+    //add to list
+    list.appendChild(todoDiv);
+
+    //clear input
+    input.value=" ";
+
+    // delete functionality
+    const deleteBtn=todoDiv.querySelector(".delete-btn");
+    deleteBtn.addEventListener("click", function(){
+   todoDiv.remove();
+    });
+
+});
+/**
+ * Type "Buy Milk" → Click Add
+  ↓
+[Buy Milk] [Delete]
+  ↓
+Click Delete → Item removed
+*/
+  </script>
+    
+</body>
+</html>
