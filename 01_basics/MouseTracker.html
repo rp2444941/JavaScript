@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      cursor: crosshair;
+    }
+    #tracker {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: black;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+  </style>
+    <title>Mouse Tracker</title>
+</head>
+<body>
+ <div id="tracker">X: 0, Y: 0</div>
+ <script>
+   const tracker = document.querySelector("#tracker");
+
+    document.addEventListener("mousemove", function(event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      tracker.innerText = `X: ${x}, Y: ${y}`;
+    });
+ </script>
+    
+</body>
+</html>
