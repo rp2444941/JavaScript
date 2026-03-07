@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+     <style>
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+    <h1>Sing Up Form</h1>
+    <form action="" id="form">
+        <input type="text" id="username" placeholder="Username">
+        <p class="error" id="usernameError"></p>
+        <input type="email" id="email" placeholder="Email">
+        <p class="error" id="emailError"></p>
+        <button type="Submit">Submit</button>  
+    </form>
+    <script>
+        const form=document.querySelector("#form");
+        const username=document.querySelector("#username");
+        const email=document.querySelector("#email");
+        const usernameError=document.querySelector("#usernameError");
+        const emailError=document.querySelector("#emailError");
+
+        form.addEventListener("submit",function(event){
+      event.preventDefault();// form submit na ho
+      let isValid=true;
+
+      // username validation
+      if(username.value.length < 3){
+        usernameError.innerHTML="Username must be 3+ characters";
+        isValid=false;
+      }else{
+        usernameError.innerHTML="";
+      }
+      //email validation
+
+      if(!email.value.includes("@")){
+        emailError.innerHTML="Invalid email";
+        isValid=false;
+      }else{
+        emailError.innerText="";
+      }
+      if(isValid){
+        alert("Form submitted successfully");
+      }
+        })
+    </script>
+</body>
+</html>
