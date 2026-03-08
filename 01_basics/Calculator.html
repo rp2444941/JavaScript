@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #222;
+    }
+    .calculator {
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    #display {
+      width: 100%;
+      height: 80px;
+      background: #444;
+      color: white;
+      font-size: 40px;
+      text-align: right;
+      padding: 20px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    button {
+      padding: 30px;
+      font-size: 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #555;
+      color: white;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #666;
+    }
+    .operator {
+      background: #ff9500;
+    }
+    .operator:hover {
+      background: #ffb143;
+    }
+    .equals {
+      background: #4caf50;
+      grid-column: span 2;
+    }
+    .equals:hover {
+      background: #66bb6a;
+    }
+    .clear {
+      background: #f44336;
+      grid-column: span 2;
+    }
+    .clear:hover {
+      background: #ef5350;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled>
+    <div class="buttons">
+      <button class="clear">C</button>
+      <button class="operator">/</button>
+      <button class="operator">*</button>
+      
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="operator">-</button>
+      
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="operator">+</button>
+      
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="equals">=</button>
+      
+      <button class="number">0</button>
+      <button class="number">.</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.querySelector("#display");
+    const numbers = document.querySelectorAll(".number");
+    const operators = document.querySelectorAll(".operator");
+    const equals = document.querySelector(".equals");
+    const clear = document.querySelector(".clear");
+
+    let currentInput = "";
+    let operator = "";
+    let previousInput = "";
+
+    // Number buttons
+    numbers.forEach(button => {
+      button.addEventListener("click", function() {
+        currentInput += button.innerText;
+        display.value = currentInput;
+      });
+    });
+
+    // Operator buttons
+    operators.forEach(button => {
+      button.addEventListener("click", function() {
+        if (currentInput === "") return;
+        
+        if (previousInput !== "") {
+          calculate();
+        }
+        
+        operator = button.innerText;
+        previousInput = currentInput;
+        currentInput = "";
+      });
+    });
+
+    // Equals button
+    equals.addEventListener("click", calculate);
+
+    function calculate() {
+      if (previousInput === "" || currentInput === "") return;
+      
+      let result;
+      const prev = parseFloat(previousInput);
+      const current = parseFloat(currentInput);
+      
+      switch(operator) {
+        case "+":
+          result = prev + current;
+          break;
+        case "-":
+          result = prev - current;
+          break;
+        case "*":
+          result = prev * current;
+          break;
+        case "/":
+          result = prev / current;
+          break;
+      }
+      
+      currentInput = result.toString();
+      operator = "";
+      previousInput = "";
+      display.value = currentInput;
+    }
+
+    // Clear button
+    clear.addEventListener("click", function() {
+      currentInput = "";
+      previousInput = "";
+      operator = "";
+      display.value = "";
+    });
+  </script>
+</body>
+</html>
