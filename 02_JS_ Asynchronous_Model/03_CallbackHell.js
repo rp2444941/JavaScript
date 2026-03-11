@@ -88,6 +88,55 @@ getUser()
   getPosts()
    ↓
   getComments()
-  
+
   Readable ho gaya.
+ */
+
+
+  //==========2️⃣ Async/Await (Best)
+
+  async function getData(){
+    try{
+        const user=await getUser()
+        const posts=await getPosts(user.id)
+        const comments=await getComments(posts[0].id)
+        
+        console.log(comments);    
+
+    }
+    catch(err){
+        console.log(err);
+        
+    }
+  }
+  //Ab code normal synchronous jaisa dikhta hai.
+
+/**#========Easy Analogy
+
+Imagine karo:
+
+Restaurant me order kar rahe ho.
+
+Callback Hell:
+
+Order food
+   ↓
+Call waiter
+   ↓
+Call chef
+   ↓
+Call delivery
+
+
+
+#==Promises / Async Await:
+
+Order food
+↓
+Cook
+↓
+Deliver
+↓
+Eat
+Simple flow.
  */
