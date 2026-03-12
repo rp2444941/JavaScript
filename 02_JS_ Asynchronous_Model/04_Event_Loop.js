@@ -3,14 +3,14 @@
  * Event loop ka kam hai stack empty hone par queue se callback uthana.
  */
 
-// while(true){
-//     if(callStack.isEmpty()){
-//         if(callbackQueue.hasTasks()){
-//             const task=callbackQueue.dequeue();
-//             callStack.push(task);
-//         }
-//     }
-// }
+while(true){
+    if(callStack.isEmpty()){
+        if(callbackQueue.hasTasks()){
+            const task=callbackQueue.dequeue();
+            callStack.push(task);
+        }
+    }
+}
 
 /*Visual Loop:
      ┌─────────────────────────────────────┐
