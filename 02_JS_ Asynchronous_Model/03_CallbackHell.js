@@ -140,3 +140,43 @@ Deliver
 Eat
 Simple flow.
  */
+
+
+//3.=>>>:================ Call Stack in Action ==========
+function first(){console.log("first");
+
+}
+function second(){first();console.log("second");
+
+}
+function third(){second(); console.log("Third");
+}
+third();
+
+/**
+ * call stack
+ * step 1:
+ * stack:[third]
+ * step2: third() call second()
+ * stack:[third,secont] (second on top)
+ * step3:third() call second() call first()
+ * stack:[third,second,third] (first on top)
+ * 
+ * Step 4: first() executes → console.log("First")
+ * first() remove from stack (LIFO) first top pop
+ * stack:[third, second]
+ * 
+ * step5:second() continues → console.log("Second")
+ * second() removed
+ * stack; [third]
+ * 
+ * step6:third() continues → console.log("Third")
+ * third() removed
+ * stack:[]
+ * 
+ * Output:
+   First
+   Second
+   Third
+ * 
+ */
